@@ -6,7 +6,12 @@ public class Main {
 
     public static void main(String[] args) {
         String[] array = {"a", "b", "c", "d", "e"};
-        elementsReplace(array, 0, 4);
+        try {
+            elementsReplace(array, 0, 4);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Введенные значения выходят за пределы массива");
+        }
+
 
     }
 
