@@ -10,9 +10,11 @@ public interface DAO {
 
     void updateStudentScoreById(int id, int score) throws SQLException;
 
-    List<Students> getSurnameById(int id) throws SQLException;
+    void deleteStudentById(int id) throws SQLException;
 
-    List<Students> getSurnamesBetweenScore(int scoreStart, int scoreEnd) throws SQLException;
+    List<Students> getStudentById(int id) throws SQLException;
+
+    List<Students> getStudentsBetweenScore(int scoreStart,int scoreEnd) throws SQLException;
 
     List<Students> getAllStudents() throws SQLException;
 }

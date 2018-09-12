@@ -42,7 +42,7 @@ public class JdbcDaoImpl implements DAO {
     }
 
     @Override
-    public List<Students> getSurnameById(int id) throws SQLException {
+    public List<Students> getStudentById(int id) throws SQLException {
         String sql = "SELECT * FROM Students WHERE ID = ?;";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, id);
@@ -56,8 +56,8 @@ public class JdbcDaoImpl implements DAO {
     }
 
     @Override
-    public void addStudent(String surname,int score) throws SQLException {
-        String sql = "INSERT INTO Students (Surname, Score) VALUES ('?', '?');";
+    public void addStudent(String surname, int score) throws SQLException {
+        String sql = "INSERT INTO Students (Surname, Score) values (?, ?);";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setString(1, surname);
         statement.setInt(2, score);
@@ -66,7 +66,7 @@ public class JdbcDaoImpl implements DAO {
     }
 
     @Override
-    public void updateStudentScoreById(int id,int score) throws SQLException {
+    public void updateStudentScoreById(int id, int score) throws SQLException {
         String sql = "UPDATE Students SET Score = ? WHERE id = ?;";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, score);
@@ -77,7 +77,17 @@ public class JdbcDaoImpl implements DAO {
     }
 
     @Override
-    public List<Students> getSurnamesBetweenScore(int scoreStart,int scoreEnd) throws SQLException {
+    public void deleteStudentById(int id) throws SQLException {
+        String sql = "DELETE FROM Students WHERE Id = ?;";
+        PreparedStatement statement = connection.prepareStatement(sql);
+        statement.setInt(1, id);
+        statement.executeUpdate();
+        System.out.println("Студент (Id " + id + ") удален из базы.");
+
+    }
+
+    @Override
+    public List<Students> getStudentsBetweenScore(int scoreStart, int scoreEnd) throws SQLException {
         String sql = "SELECT * FROM Students WHERE Score BETWEEN ? AND ?;";
         PreparedStatement statement = connection.prepareStatement(sql);
         statement.setInt(1, scoreStart);

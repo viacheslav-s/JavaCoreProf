@@ -39,7 +39,7 @@ public class Students {
         return "Студенты {" +
                 "id=" + id +
                 ", Фамилия='" + surname + '\'' +
-                ", Баллы='" + score +
+                ", Баллы=" + score +
                 '}';
     }
 }
